@@ -5,29 +5,31 @@ import {home} from '../../assets';
 import {Input} from '../../components';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 const Home = ({navigation}) => {
     const HomeReducer = useSelector(state => state.HomeReducer);
+    const dispatch = useDispatch()
 
-    const [dataUser, setDataUser] = useState({
-        beratBadan : '',
-        tinggiBadan : ''
-    })
+    // const [dataUser, setDataUser] = useState({
+    //     beratBadan : '',
+    //     tinggiBadan : ''
+    // })
 
-    useEffect(() => {
-        console.log('globa:', HomeReducer);
-    }, [HomeReducer]);
+    // useEffect(() => {
+    //     console.log('reducer:', HomeReducer);
+    // }, [HomeReducer]);
 
     const sendData = () =>{
-        console.log('data yang dikirim: ', dataUser);
+        console.log('data yang dikirim: ', HomeReducer.dataUser);
     }
 
     const onInputChange = (value, input) => {
-        setDataUser({
-            ...dataUser,
-            [input]: value,
-        })
+        // setDataUser({
+        //     ...dataUser,
+        //     [input]: value,
+        // })
+        dispatch({type: 'SET_DATAUSER', inputType: input, inputValue: value});
     }
 
     const handleGoTo = (screen) => {
@@ -44,7 +46,7 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Berat Badan (kg)" 
-                value={dataUser.beratBadan}
+                value={HomeReducer.dataUser.beratBadan}
                 onChangeText = {value => onInputChange(value,'beratBadan')}
             />
             
@@ -53,7 +55,7 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Tinggi Badan (cm)" 
-                value={dataUser.tinggiBadan}
+                value={HomeReducer.dataUser.tinggiBadan}
                 onChangeText = {value => onInputChange(value, 'tinggiBadan')}
             />
             
