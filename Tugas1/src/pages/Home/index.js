@@ -9,7 +9,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { setDataUser } from '../../redux';
 
 const Home = ({navigation}) => {
-    const {dataUser} = useSelector(state => state.HomeReducer);
+    const HomeReducer = useSelector(state => state.HomeReducer);
     const dispatch = useDispatch()
 
     const sendData = () =>{
@@ -34,7 +34,7 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Berat Badan (kg)" 
-                value={dataUser.beratBadan}
+                value={HomeReducer.dataUser.beratBadan}
                 onChangeText = {value => onInputChange(value,'beratBadan')}
             />
             
@@ -43,14 +43,14 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Tinggi Badan (cm)" 
-                value={dataUser.tinggiBadan}
+                value={HomeReducer.dataUser.tinggiBadan}
                 onChangeText = {value => onInputChange(value, 'tinggiBadan')}
             />
             
             <ActionButton 
                 desc="Apakah berat badanmu sudah ideal?" 
                 title='Hitung' 
-                onPress={sendData} // () => handleGoTo('Finish')
+                onPress={ () => handleGoTo('Finish')} // sendData
             />
         </View>
     );
