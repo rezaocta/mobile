@@ -6,30 +6,18 @@ import {Input} from '../../components';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { setDataUser } from '../../redux';
 
 const Home = ({navigation}) => {
-    const HomeReducer = useSelector(state => state.HomeReducer);
+    const {dataUser} = useSelector(state => state.HomeReducer);
     const dispatch = useDispatch()
-
-    // const [dataUser, setDataUser] = useState({
-    //     beratBadan : '',
-    //     tinggiBadan : ''
-    // })
-
-    // useEffect(() => {
-    //     console.log('reducer:', HomeReducer);
-    // }, [HomeReducer]);
 
     const sendData = () =>{
         console.log('data yang dikirim: ', HomeReducer.dataUser);
     }
 
-    const onInputChange = (value, input) => {
-        // setDataUser({
-        //     ...dataUser,
-        //     [input]: value,
-        // })
-        dispatch({type: 'SET_DATAUSER', inputType: input, inputValue: value});
+    const onInputChange = (value, inputType) => {
+        dispatch(setDataUser(inputType,value));
     }
 
     const handleGoTo = (screen) => {
@@ -46,7 +34,7 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Berat Badan (kg)" 
-                value={HomeReducer.dataUser.beratBadan}
+                value={dataUser.beratBadan}
                 onChangeText = {value => onInputChange(value,'beratBadan')}
             />
             
@@ -55,7 +43,7 @@ const Home = ({navigation}) => {
             </Text>
             <Input 
                 placeholder="Tinggi Badan (cm)" 
-                value={HomeReducer.dataUser.tinggiBadan}
+                value={dataUser.tinggiBadan}
                 onChangeText = {value => onInputChange(value, 'tinggiBadan')}
             />
             
