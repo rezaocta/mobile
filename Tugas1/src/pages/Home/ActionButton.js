@@ -5,18 +5,12 @@ const ActionButton = ({onPress, title}) => {
     
     return (
         <View style={{ marginBottom: 43, maxWidth: 225 }}>
-            <Text style={{ fontSize: 15, color: 'black', textAlign: 'center' }}>
-                Masukkan Berat Badan
-            </Text>
-            <Text style={{ fontSize: 15, color: 'black', textAlign: 'center' }}>
-                Masukkan Tinggi Badan
-            </Text>
             <TouchableOpacity
                 style={{
                     backgroundColor: '#3cb49e',
                     borderRadius: 15,
                     paddingVertical: 13,
-                    paddingLeft: 13,
+                    paddingHorizontal: 13,
 
                 }}onPress={onPress}>
                 <Text
