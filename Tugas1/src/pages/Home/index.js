@@ -3,19 +3,22 @@ import { Text, View, Image } from 'react-native';
 import ActionButton from './ActionButton';
 import {home} from '../../assets';
 import {Input} from '../../components';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import {useSelector} from 'react-redux';
 
 const Home = ({navigation}) => {
+    const HomeReducer = useSelector(state => state.HomeReducer);
+
     const [dataUser, setDataUser] = useState({
         beratBadan : '',
         tinggiBadan : ''
     })
 
-    // useEffect(() => {
-    //     console.log('test hello world');
-    // },[]);
-    
+    useEffect(() => {
+        console.log('globa:', HomeReducer);
+    }, [HomeReducer]);
+
     const sendData = () =>{
         console.log('data yang dikirim: ', dataUser);
     }
@@ -37,7 +40,7 @@ const Home = ({navigation}) => {
             <Text style={styles.text}>Selamat datang!</Text>
             
             <Text style={{ fontSize: 15, color: 'black', textAlign: 'center' }}>
-                Masukkan Berat Badan
+                Masukkan Berat Badan 
             </Text>
             <Input 
                 placeholder="Berat Badan (kg)" 
